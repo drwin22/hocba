@@ -1,0 +1,32 @@
+---
+title: "syllabus"
+author: "Luke"
+date: "2022-12-13"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+```{r include = FALSE}
+library(tidyverse)
+library(lubridate)
+
+firstday <- "2023-01-15"
+    
+meetings <- ymd(firstday) + c(0:30) * weeks(1)
+
+meeting_headers <- paste0("Week ", 1:16, ", ", months(meetings), " ", day(meetings))
+
+```
+##  `r meeting_headers[1]` : Something Interesting
+
+```{r}
+c <- read.csv('attend-grade-relationships.csv')
+str(c)
+plot(c$attendance,c$grade)
+
+```
+
