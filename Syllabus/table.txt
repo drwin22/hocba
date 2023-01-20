@@ -1,0 +1,21 @@
+https://ardata-fr.github.io/flextable-book/format.html
+https://www.liamdbailey.com/post/making-beautiful-tables-with-gt/
+https://community.rstudio.com/t/package-installation-difficulties/70888
+https://www.liamdbailey.com/post/making-beautiful-tables-with-gt/
+--------
+
+https://data.world/
+```{r, incluse=FALSE,echo=FALSE}
+df=mtcars
+df %>%gt()
+df %>%gt() %>%
+tab_header(title = "mtcars dataset") %>%
+tab_style(
+style = list(cell_fill(color = "#b2f7ef"),
+cell_text(weight = "bold")),
+locations = cells_body(columns = mpg))%>%
+tab_style(
+style = list(cell_fill(color = "#ffefb5"),
+cell_text(weight = "bold")), 
+locations = cells_body(columns = hp))
+```

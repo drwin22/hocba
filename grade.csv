@@ -1,0 +1,11 @@
+Category,Code,Points,Weight
+Homework,HW,260,40%
+Quizzes,Qu,90,30%
+Midterm,Mid,30,10%
+Final,Fin,30,10%
+Paricipation,Par,80,10%
+A,>93,>93,
+B,80-93,80-93,
+C,70-79,70-79,
+D,60-69,60-69,
+F,<60,<60,

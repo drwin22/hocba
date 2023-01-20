@@ -1,0 +1,546 @@
+\documentclass[]{article}
+\usepackage[margin=.5in]{geometry}
+\newcommand*{\authorfont}{\fontfamily{phv}\selectfont}
+\usepackage{lmodern}
+\usepackage{abstract}
+\renewcommand{\abstractname}{}    % clear the title
+\renewcommand{\absnamepos}{empty} % originally center
+\newcommand{\blankline}{\quad\pagebreak[2]}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}} 
+\usepackage{longtable,booktabs}
+
+\usepackage{parskip}
+\usepackage{titlesec}
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{6pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{6pt plus 2pt minus 2pt}
+
+\titleformat*{\subsubsection}{\normalsize\itshape}
+
+\usepackage{titling}
+\setlength{\droptitle}{-.25cm}
+
+%\setlength{\parindent}{0pt}
+%\setlength{\parskip}{6pt plus 2pt minus 1pt}
+%\setlength{\emergencystretch}{3em}  % prevent overfull lines 
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{lastpage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.0pt} 
+\lhead{}
+\chead{}
+\rhead{\footnotesize Math 0910: Introduction Algebra -- Spring 2023}
+\lfoot{}
+\cfoot{\small \thepage/\pageref*{LastPage}}
+\rfoot{}
+
+\fancypagestyle{firststyle}
+{
+\renewcommand{\headrulewidth}{0pt}%
+   \fancyhf{}
+   \fancyfoot[C]{\small \thepage/\pageref*{LastPage}}
+}
+
+%\def\labelitemi{--}
+%\usepackage{enumitem}
+%\setitemize[0]{leftmargin=25pt}
+%\setenumerate[0]{leftmargin=25pt}
+
+
+
+
+\makeatletter
+\@ifpackageloaded{hyperref}{}{%
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+}
+\@ifpackageloaded{color}{
+    \PassOptionsToPackage{usenames,dvipsnames}{color}
+}{%
+    \usepackage[usenames,dvipsnames]{color}
+}
+\makeatother
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={ ()},
+             pdfkeywords = {},  
+            pdftitle={Math 0910: Introduction Algebra},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+
+
+\setcounter{secnumdepth}{0}
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+
+\usepackage{graphicx}
+% We will generate all images so they have a width \maxwidth. This means
+% that they will get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
+
+
+
+\usepackage{setspace}
+
+\title{Math 0910: Introduction Algebra}
+\author{Prof.~Francois Nguyen}
+\date{Spring 2023}
+
+
+\begin{document}  
+
+		\maketitle
+		
+	
+		\thispagestyle{firststyle}
+
+%	\thispagestyle{empty}
+
+
+	\noindent \begin{tabular*}{\textwidth}{ @{\extracolsep{\fill}} lr @{\extracolsep{\fill}}}
+
+
+E-mail: \texttt{\href{mailto:Francois.nguyen@usaintpaul.edu}{\nolinkurl{Francois.nguyen@usaintpaul.edu}}} & Web: \href{http://MymathLab.com}{\tt MymathLab.com}\\
+Office Hours: TTh 9:30 to 11:00 am and by appointment  &  Class Hours: T
+11:00 am to 1:50 pm\\
+Office: 324 Schaeffer Hall  & Class Room: 4140\\
+	&  \\
+	\hline
+	\end{tabular*}
+	
+\vspace{2mm}
+	
+
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{c }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{\textquotesingle{}attend{-}grade{-}relationships.csv\textquotesingle{}}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(c}\SpecialCharTok{$}\NormalTok{attendance,c}\SpecialCharTok{$}\NormalTok{grade)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{firstday }\OtherTok{\textless{}{-}} \StringTok{"2023{-}01{-}09"}
+    
+\NormalTok{meetings }\OtherTok{\textless{}{-}} \FunctionTok{ymd}\NormalTok{(firstday) }\SpecialCharTok{+} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{15}\NormalTok{) }\SpecialCharTok{*} \FunctionTok{weeks}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+
+\NormalTok{meeting\_headers }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\StringTok{"Week "}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{16}\NormalTok{, }\StringTok{", "}\NormalTok{, }\FunctionTok{months}\NormalTok{(meetings), }\StringTok{" "}\NormalTok{, }\FunctionTok{day}\NormalTok{(meetings))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{overview}{%
+\section{Overview:}\label{overview}}
+
+This course is Introduction to Algebra Online course. The topics include
+real numbers, methods of solving equations and inequalities and their
+applications, exponents and polynomials, factoring polynomials, solving
+quadratic equations and their applications, rational expressions,
+rational exponents and radicals, and graphing functions (linear and
+quadratic).
+
+\hypertarget{course-requirements}{%
+\section{Course Requirements}\label{course-requirements}}
+
+A minimum grade of C is required in this course to progress to COURSE.
+\# Course Objectives:
+
+At the completion of this course, students will be able to:
+
+\begin{itemize}
+\tightlist
+\item
+  Identify and understand the basic concepts of algebraic expressions.
+\item
+  Perform operations on polynomial and rational expressions.
+\item
+  Apply the definition of absolute value to solve inequalities and
+  equations involving absolute values.
+\item
+  Find solutions to and graph systems of linear equations and
+  inequalities.
+\item
+  Solve equations involving first and second-degree polynomials and
+  rational expressions.
+\item
+  Manipulate radical expressions using laws of exponents.
+\item
+  Understand basic properties of functions.
+\item
+  Apply properties of rational and radical expressions, polynomials, and
+  absolute value in the context of real-life
+\end{itemize}
+
+\hypertarget{course-policies}{%
+\section{Course Policies:}\label{course-policies}}
+
+\hypertarget{general}{%
+\subsection{General:}\label{general}}
+
+-- Computers, Calculators are not to be used unless instructed to do so.
+-- Quizzes and exams are closed book, closed notes.
+
+\hypertarget{grade}{%
+\subsection{Grade:}\label{grade}}
+
+makeup quizzes or exams will be given.
+
+-- Grades in the C range represent performance that meets expectations;
+Grades in the B range represent performance that is substantially better
+than the expectations; Grades in the A range represent work that is
+excellent.
+
+-- Grades will be maintained in the LMS course shell. Students are
+responsible for tracking their progress by referring to the online
+gradebook.
+
+\hypertarget{assignments}{%
+\section{Assignments}\label{assignments}}
+
+-- Students are expected to work independently. Offering and accepting
+solutions from others is an act of plagiarism, which is a serious
+offense and all involved parties will be penalized according to the
+Academic Honesty Policy.
+
+-- Discussion among students is encouraged, but when in doubt, direct
+your questions to the professor, tutor, or lab assistant.
+
+-- No late assignments will be accepted under any circumstances.
+
+\hypertarget{attendance-and-absences}{%
+\section{Attendance and Absences}\label{attendance-and-absences}}
+
+-- Attendance is expected and will be taken each class. You are allowed
+to miss 1 class during the semester without penalty. Any further
+absences will result in point and/or grade deductions.
+
+-- Students are responsible for all missed work, regardless of the
+reason for absence. It is also the absentee's responsibility to get all
+missing notes or materials.
+
+\hypertarget{academic-honesty-policy-summary}{%
+\section{Academic Honesty Policy
+Summary:}\label{academic-honesty-policy-summary}}
+
+In addition to skills and knowledge, Saint Paul College aims to teach
+students appropriate Ethical and Professional Standards of Conduct. The
+Academic Honesty Policy exists to inform students and Faculty of their
+obligations in upholding the highest standards of professional and
+ethical integrity. All student work is subject to the Academic Honesty
+Policy. Professional and Academic practice provides guidance about how
+to properly cite, reference, and attribute the intellectual property of
+others. Any attempt to deceive a faculty member or to help another
+student to do so will be considered a violation of this standard.
+
+\hypertarget{college-policy}{%
+\section{College Policy}\label{college-policy}}
+
+The College's academic honesty policies can be found in the catalog.
+Please be assured that there will be absolutely no tolerance for
+cheating in any way. All your quizzes and exams must be done
+independently with no help from anyone. Make sure you copy the code of
+honor statement below and send me an email with your name and date of
+the time to confirm you adhere to this course policy: ``I will register
+for only one account on Mymathlab.com. My answers to homework, quizzes
+and exams will be my own work (except for assignments that explicitly
+permit collaboration).
+
+I will not make solutions to homework, quizzes or exams available to
+anyone else. This includes both solutions written by me, as well as any
+official solutions provided by the course instructor. I will not engage
+in any other activities that will dishonestly improve my results or
+dishonestly improve/hurt the results of others. Your name. Dated on
+Jan/\ldots/2023.
+
+\hypertarget{special-services-and-math-tutoring}{%
+\section{Special Services and Math
+Tutoring}\label{special-services-and-math-tutoring}}
+
+Special Accommodations: It is college policy to provide reasonable
+accommodations to students with disabilities. Please contact the office
+of Disability Resources and Access if you wish to discuss this policy.
+The Math Center (MC) will be open for drop-in tutoring in room 3125.
+This tutoring is FREE and no appointment is necessary.
+
+\hypertarget{online-coursework-integrity-declaration}{%
+\section{Online coursework Integrity
+Declaration}\label{online-coursework-integrity-declaration}}
+
+Online submission of, or placing one's name on an exam, assignment, or
+any course document is a statement of academic honor that the student
+has not received or given inappropriate assistance in completing it and
+that the student has complied with the Academic Honesty Policy in that
+work.
+
+\hypertarget{consequences}{%
+\section{Consequences}\label{consequences}}
+
+An instructor may impose a sanction on the student that varies depending
+upon the instructor's evaluation of the nature and gravity of the
+offense. Possible sanctions include but are not limited to, the
+following: (1) Require the student to redo the assignment; (2) Require
+the student to complete another assignment; (3) Assign a grade of zero
+to the assignment; (4) Assign a final grade of ``F'' for the course. A
+student may appeal these decisions according to the Academic Grievance
+Procedure. (See the relevant section in the Student Handbook.) Multiple
+violations of this policy will result in a referral to the Conduct
+Review Board for possible additional sanctions.
+
+The full text of the Academic Honesty Policy is in the Student Handbook.
+
+\hypertarget{course-schedule}{%
+\section{Course Schedule}\label{course-schedule}}
+
+\hypertarget{week-1-january-9-introduction-to-the-course}{%
+\subsection{Week 1, January 9: Introduction to the
+Course}\label{week-1-january-9-introduction-to-the-course}}
+
+\emph{Assignment}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{http://happygitwithr.com}{Bryan, Jennifer. 2016.
+  \textit{Happy Git and GitHub for the UseR.} Chapters 1-16.} Read this
+  carefully and follow its instructions to get set up with \textsf{R},
+  RStudio, Git, and GitHub on your laptop before we meet.
+\end{enumerate}
+
+\hypertarget{week-2-january-16-the-replication-crisis-and-reproducibility}{%
+\subsection{Week 2, January 16: The Replication Crisis and
+Reproducibility}\label{week-2-january-16-the-replication-crisis-and-reproducibility}}
+
+\emph{Readings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{http://fivethirtyeight.com/features/how-two-grad-students-uncovered-michael-lacour-fraud-and-a-way-to-change-opinions-on-transgender-rights/}{Aschwanden,
+  Christie, and Maggie Koerth-Baker. 2016. ``How Two Grad Students
+  Uncovered an Apparent Fraud---and a Way to Change Opinions on
+  Transgender Rights.'' \emph{FiveThirtyEight}, April 7}, and
+  \href{http://blogs.lse.ac.uk/impactofsocialsciences/2013/04/24/reinhart-rogoff-revisited-why-we-need-open-data-in-economics/}{Dimitrova,
+  Velichka. 2013. ``Reinhart-Rogoff Revisited: Coding Errors
+  Happen---Key Problem Was in Not Making the Data Openly Available from
+  the Start.'' \emph{LSE: The Impact Blog}, April 24.}
+\item
+  \href{http://journals.cambridge.org/action/displayAbstract?fromPage=online\&aid=9911378\&fulltextType=LT\&fileId=S2049847015000448}{Data
+  Access and Research Transparency (DA-RT): A Joint Statement by
+  Political Science Journal Editors.}
+\item
+  \href{https://ajps.org/ajps-replication-policy/}{\emph{AJPS}
+  Replication and Verification Policy} and
+  \href{https://ajpsblogging.files.wordpress.com/2015/03/ajps-guide-for-replic-materials-1-0.pdf}{\emph{American
+  Journal of Political Science} Guidelines for Preparing Replication
+  Files.}
+\item
+  \href{http://www.stat.columbia.edu/~gelman/research/unpublished/p_hacking.pdf}{Gelman,
+  Andrew, and Eric Loken. 2013. ``The Garden of Forking Paths: Why
+  Multiple Comparisons Can Be a Problem, Even When There Is No `Fishing
+  Expedition' or `\emph{p}-Hacking' and the Research Hypothesis Was
+  Posited Ahead of Time.''}
+\item
+  \href{http://www.pnas.org.proxy.lib.uiowa.edu/content/112/6/1645}{Leek,
+  Jeffrey T., and Roger D. Peng. 2015. ``Opinion: Reproducibile Research
+  Can Still Be Wrong: Adopting a Prevention Approach.''
+  \emph{Proceedings of the National Academy of Sciences}
+  112(6):1645-1646} and
+  \href{http://biorxiv.org/content/biorxiv/early/2016/07/29/066803.full.pdf}{Patil,
+  Prasad, Roger D. Peng, and Jeffrey T. Leek. 2016. ``A Statistical
+  Definition for Reproducibility and Replicability.'' \emph{bioRxiv},
+  July 29.}
+\end{enumerate}
+
+\hypertarget{week-3-january-23-chapter-03}{%
+\subsection{Week 3, January 23:
+Chapter-03}\label{week-3-january-23-chapter-03}}
+
+\emph{Assignment}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{http://happygitwithr.com}{Bryan, Jennifer. 2016.
+  \textit{Happy Git and GitHub for the UseR.} Chapters 1-16.} Read this
+  carefully and follow its instructions to get set up with \textsf{R},
+  RStudio, Git, and GitHub on your laptop before we meet.
+\end{enumerate}
+
+\hypertarget{week-4-january-30-chapter-04}{%
+\subsection{Week 4, January 30:
+Chapter-04}\label{week-4-january-30-chapter-04}}
+
+\emph{Readings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{http://happygitwithr.com}{Bryan, Jennifer. 2016.
+  \textit{Happy Git and GitHub for the UseR.} Chapters 1-16.} Read this
+  carefully and follow its instructions to get set up with \textsf{R},
+  RStudio, Git, and GitHub on your laptop before we meet.
+\item
+  \href{http://happygitwithr.com}{Bryan, Jennifer. 2016.
+  \textit{Happy Git and GitHub for the UseR.} Chapters 1-16.} Read this
+  carefully and follow its instructions to get set up with \textsf{R},
+  RStudio, Git, and GitHub on your laptop before we meet.
+\end{enumerate}
+
+\hypertarget{week-5-february-6-chapter-05}{%
+\subsection{Week 5, February 6:
+Chapter-05}\label{week-5-february-6-chapter-05}}
+
+\emph{Readings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{http://happygitwithr.com}{Bryan, Jennifer. 2016.
+  \textit{Happy Git and GitHub for the UseR.} Chapters 1-16.} Read this
+  carefully and follow its instructions to get set up with \textsf{R},
+  RStudio, Git, and GitHub on your laptop before we meet.
+\end{enumerate}
+
+\hypertarget{week-6-february-13-chapter-06}{%
+\subsection{Week 6, February 13:
+Chapter-06}\label{week-6-february-13-chapter-06}}
+
+\emph{Readings}: \href{http://happygitwithr.com}{Bryan, Jennifer. 2016.
+\textit{Happy Git and GitHub for the UseR.} Chapters 1-16.} Read this
+carefully and follow its instructions to get set up with \textsf{R},
+RStudio, Git, and GitHub on your laptop before we meet.
+
+\hypertarget{week-7-february-20-chapter-07}{%
+\subsection{Week 7, February 20:
+Chapter-07}\label{week-7-february-20-chapter-07}}
+
+\emph{Readings}: \href{http://happygitwithr.com}{Bryan, Jennifer. 2016.
+\textit{Happy Git and GitHub for the UseR.} Chapters 1-16.} Read this
+carefully and follow its instructions to get set up with \textsf{R},
+RStudio, Git, and GitHub on your laptop before we meet.
+
+\hypertarget{week-8-february-27-chapter-08}{%
+\subsection{Week 8, February 27:
+Chapter-08}\label{week-8-february-27-chapter-08}}
+
+\emph{Readings}: \href{http://happygitwithr.com}{Bryan, Jennifer. 2016.
+\textit{Happy Git and GitHub for the UseR.} Chapters 1-16.} Read this
+carefully and follow its instructions to get set up with \textsf{R},
+RStudio, Git, and GitHub on your laptop before we meet.
+
+\hypertarget{week-9-march-6-chapter-09}{%
+\subsection{Week 9, March 6:
+Chapter-09}\label{week-9-march-6-chapter-09}}
+
+\hypertarget{week-10-march-13-chapter-10}{%
+\subsection{Week 10, March 13:
+Chapter-10}\label{week-10-march-13-chapter-10}}
+
+\hypertarget{week-11-march-20-chapter-11}{%
+\subsection{Week 11, March 20:
+Chapter-11}\label{week-11-march-20-chapter-11}}
+
+\hypertarget{week-12-march-27-chapter-12}{%
+\subsection{Week 12, March 27:
+Chapter-12}\label{week-12-march-27-chapter-12}}
+
+\hypertarget{week-13-april-3-chapter-13}{%
+\subsection{Week 13, April 3:
+Chapter-13}\label{week-13-april-3-chapter-13}}
+
+\hypertarget{week-14-april-10-chapter-14}{%
+\subsection{Week 14, April 10:
+Chapter-14}\label{week-14-april-10-chapter-14}}
+
+\hypertarget{week-15-april-17-chapter-15}{%
+\subsection{Week 15, April 17:
+Chapter-15}\label{week-15-april-17-chapter-15}}
+
+\hypertarget{week-16-april-24-chapter-16}{%
+\subsection{Week 16, April 24:
+Chapter-16}\label{week-16-april-24-chapter-16}}
+
+
+
+
+\end{document}
+
+\makeatletter
+\def\@maketitle{%
+  \newpage
+%  \null
+%  \vskip 2em%
+%  \begin{center}%
+  \let \footnote \thanks
+    {\fontsize{18}{20}\selectfont\raggedright  \setlength{\parindent}{0pt} \@title \par}%
+}
+%\fi
+\makeatother
