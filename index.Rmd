@@ -1,0 +1,191 @@
+---
+title: "Math2250:Introduction to Statistics - Midterm Project"
+author: "Student's Name"
+date: "2022-11-08"
+output: html_document
+
+---
+```{css, echo= FALSE}
+body {
+ background-color: #d0e3f1;
+}
+```
+\definecolor{shadecolor}{RGB}{245,245,245}
+<style type="text/css">
+body, td {
+   font-size: 20px;
+}
+code.r{
+  font-size: 20px;
+}
+pre {
+  font-size: 20px
+}
+</style>
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```
+```{r echo = FALSE, results = 'asis'}
+image = "https://media.glassdoor.com/l/468324/dunwoody-college-office.jpg"
+cat(paste0('<center><img src="', image,  '"></center>'))
+```
+## Prologue
+One of the biggest purchases we make in our lives is a home. As we buy a home we ask ourselves many questions such as:
+
+* How much should I spend for a home?
+
+* How many bathrooms are there?
+
+* What is the cost per square foot?
+
+Suppose you are looking for a house near Charleston in Mount Pleasant SC. and you have narrowed your search to three subdivisions: Carolina Park. Dunes West and Park West.
+```{r include = FALSE}
+library(tidyverse)
+library(lubridate)
+```
+```{r, include=FALSE}
+options(tinytex.verbose = TRUE)
+```
+```{r}
+c <- read.csv('attend-grade-relationships.csv')
+
+plot(c$attendance,c$grade)
+```
+```{r}
+firstday <- "2023-01-09"
+    
+meetings <- ymd(firstday) + c(0:15) * weeks(1)
+
+meeting_headers <- paste0("Week ", 1:16, ", ", months(meetings), " ", day(meetings))
+```
+## Motivation
+
+The Midterm project is intended for cooperative learning. You will need to contribute your work as a active learner. You will  work with other members to produce the result for the statistical analysis and submit your project by the due date which was posted on D2L.
+
+You need to cite in details the process how you carry out your work and to answer the questions. Use confidence intervals and hypothesis testing to show the evidence to support or show lack of evidence to support for a research project.
+Here is framework for your analysis:
+*importing data from Excel or text (.csv or .txt) files
+
+* cleaning data
+
+* initial exploratory plots
+
+* analysis
+
+* generating plots
+
+* generating tables
+
+* writing text to describe the project, the methods, the analysis, and the
+
+* interpretation of the results (plots and tables)
+
+```{r M1, echo=FALSE}
+# setwd("~/..2100")
+data<- read.csv("HomeSale.csv",head=TRUE)
+```
+
+```{r data, echo=FALSE}
+summary(data$List.Price)
+```
+
+```{r normality,echo= FALSE}
+hist (log(data$List.Price))
+```
+
+## Prepare Data for Analysis.
+
+Your answer: Citing your work
+
+## Splitting the data into subdivision.
+A list of the summary statistics and an interpretation of each.  This can be found in stat Crunch and R which includes the mean, variance, Standard Deviation, and several other statistics.  Emphasize the statistics for the difference if you are conducting a paired study.  Make sure you interpret these in the context of this project study than just list the definitions.
+```{r M2,echo= FALSE}
+datasplit=split(data,data$Subdivision)
+price_CP = datasplit$`Carolina Park`$List.Price
+price_DW = datasplit$`Dunes West`$List.Price
+price_PW= datasplit$`Park West`$List.Price
+region_names = c("Carolina Park", "Dunes West", "Park West") 
+boxplot(price_CP/1000,price_DW/1000,price_PW/1000,col=rainbow(6),
+        names= region_names, main = "Home Price Comparison")
+```
+
+```{r M3, echo=FALSE}
+m_CP = round(mean(price_CP))
+sd_CP = round(sd(price_CP))
+n_CP = length(price_CP)
+t_CP = qt(p=0.025, df=n_CP-1,lower.tail=FALSE)
+
+m_DW = round(mean(price_DW))
+sd_DW = round(sd(price_DW))
+n_DW = length(price_DW)
+t_DW = qt(p=0.025, df=n_DW-1,lower.tail=FALSE)
+
+m_PW = round(mean(price_PW))
+sd_PW = round(sd(price_PW))
+n_PW = length(price_PW)
+t_PW = qt(p=0.025, df=n_PW-1,lower.tail=FALSE)
+```
+**Confidence intervals for Carolina Park (t distribution)**
+```{r M4A,echo= FALSE}
+SE_CP = t_CP*sd_CP/sqrt(n_CP)
+Lower_CP = m_CP-SE_CP
+Upper_CP =m_CP+SE_CP
+Lower_CP
+Upper_CP
+```
+**Confidence intervals for Dunes West (t distribution)**
+```{r M4B,echo= FALSE}
+SE_DW = t_DW*sd_DW/sqrt(n_DW)
+Lower_DW = m_DW-SE_DW
+Upper_DW =m_DW+SE_DW
+```
+**Confidence intervals for Park West (t distribution)**
+```{r M4C,echo=FALSE}
+SE_PW = t_PW*sd_PW/sqrt(n_PW)
+Lower_PW = m_PW-SE_PW
+Upper_PW =m_PW+SE_PW
+CI_CP= c(Lower_CP,Upper_CP)# Confidence Interval for CP
+CI_DW= c(Lower_DW,Upper_DW) ## Confidence Interval for DW
+CI_CP
+CI_DW
+m_CP
+```
+```{r M4D,echo= FALSE}
+CItable = matrix(c(Lower_CP, Lower_DW, Lower_PW,Upper_CP, Upper_DW,Upper_PW),
+                ncol=3,byrow=TRUE)
+colnames(CItable)= c('Carolina Park','Dunes West','Park West')
+rownames(CItable)= c('Lower', 'Upper')
+
+round(CItable,0)
+```
+
+## Question-1
+
+Based on the data set and the information we have, which confidence interval should we use here, a z or a t interval? Why?
+
+## Question-2
+
+Construct an interval to estimate the true average List Price for each subdivision with 95% confidence. Based on these confidence intervals. is it possible that Carolina Park and Dunes West have the same average List Price. Discuss.
+
+## Question-3
+* Do you think a List Price of $520.000 is a reasonable value for the Carolina Park subdivision?
+* Do you think a List Price of $670.000 is a reasonable value for the Dunes West subdivision?
+* Do you think a List Price of $568.000 is a reasonable value for both the Carolina Park and Park West subdivisions?
+
+```{r echo = FALSE, results = 'asis'}
+image = "https://www.jamesedition.com/stories/wp-content/uploads/2020/08/3.png"
+cat(paste0('<center><img src="', image,  '"></center>'))
+```
+## Formula
+
+$$SE= \frac {Z \alpha/_2 \sigma}{\sqrt{n}}$$
+$$ \mu-SE<\mu <\mu+ SE $$
+```
+** End of the Project **
+```
+
+
